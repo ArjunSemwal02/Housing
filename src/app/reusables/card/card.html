@@ -1,1 +1,35 @@
-<p>card works!</p>
+<!-- Use Tailwind utilities here; keep layout & spacing in Tailwind -->
+<div [ngClass]="hostClasses" tabindex="0" role="group">
+  <!-- image (optional) -->
+  @if(imageSrc){<ng-container>
+    <img class="w-full h-40 object-cover" [src]="imageSrc" [alt]="imageAlt" /> </ng-container
+  >}
+
+  <!-- body -->
+  <div class="p-4">
+    @if(title || subtitle){
+    <div class="mb-2">
+      @if(title){
+      <h3 class="text-lg font-semibold leading-tight">{{ title }}</h3>
+      } @if(subtitle){
+      <p class="text-sm text-muted-foreground">{{ subtitle }}</p>
+      }
+    </div>
+    }
+
+    <!-- projected content for flexible inner content -->
+    <div class="card-content text-sm">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <!-- footer (optional) -->
+  @if(footer){
+  <div class="px-4 py-3 border-t">
+    <div class="text-xs text-gray-600">{{ footer }}</div>
+  </div>
+  }
+
+  <!-- named slot for action buttons -->
+  <ng-content select="[card-actions]"></ng-content>
+</div>

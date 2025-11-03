@@ -1,1 +1,7 @@
-<p>housing works!</p>
+<div class="min-h-screen bg-gray-50 p-6">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Available Properties</h1>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <app-card *ngFor="let property of properties" [property]="properties"></app-card>
+  </div>
+</div>

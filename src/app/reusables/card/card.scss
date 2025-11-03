@@ -1,0 +1,23 @@
+// SCSS is used for small, local customization only — leave layout & spacing to Tailwind utilities.
+
+:host {
+  display: block;
+}
+
+// Example of mapping a Tailwind-like token while keeping it local
+.card-content {
+  // you can use SCSS to limit long paragraphs, add subtle gradients, or responsive tweaks
+  p {
+    margin: 0 0 0.5rem 0;
+  }
+}
+
+// Variant tweaks (you may prefer to use Tailwind variants with @apply in a global file)
+:host(.outlined) {
+  border-radius: 0.75rem;
+}
+
+// small helper for focus ring that pairs with Tailwind in template
+:host(:focus) {
+  outline: none;
+}

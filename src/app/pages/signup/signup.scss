@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+form {
+  input.ng-invalid.ng-touched {
+    border-color: #ef4444; // red-500
+  }
+}
+
+button i {
+  font-size: 1rem;
+}
