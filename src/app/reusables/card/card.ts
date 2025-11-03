@@ -10,7 +10,7 @@ import { House } from '../../model/house';
 })
 export class Card {
   @Input() title?: string;
-  @Input() property?: House[];
+  @Input() property?: House;
   @Input() subtitle?: string;
   @Input() imageSrc?: string;
   @Input() imageAlt = '';

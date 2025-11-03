@@ -1,16 +1,21 @@
 <!-- Use Tailwind utilities here; keep layout & spacing in Tailwind -->
-<div [ngClass]="hostClasses" tabindex="0" role="group">
+<div
+  [ngClass]="hostClasses"
+  tabindex="0"
+  role="group"
+  class="cursor-pointer hover:shadow-xl transition"
+>
   <!-- image (optional) -->
   @if(imageSrc){<ng-container>
-    <img class="w-full h-40 object-cover" [src]="imageSrc" [alt]="imageAlt" /> </ng-container
+    <img class="w-full h-40 object-cover" [src]="property?.image" [alt]="imageAlt" /> </ng-container
   >}
 
   <!-- body -->
   <div class="p-4">
-    @if(title || subtitle){
+    @if(property?.title){
     <div class="mb-2">
-      @if(title){
-      <h3 class="text-lg font-semibold leading-tight">{{ title }}</h3>
+      @if(property?.title){
+      <h3 class="text-lg font-semibold leading-tight">{{ property?.title }}</h3>
       } @if(subtitle){
       <p class="text-sm text-muted-foreground">{{ subtitle }}</p>
       }
