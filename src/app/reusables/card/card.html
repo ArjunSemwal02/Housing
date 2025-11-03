@@ -3,7 +3,7 @@
   [ngClass]="hostClasses"
   tabindex="0"
   role="group"
-  class="cursor-pointer hover:shadow-xl transition"
+  class="h-50 cursor-pointer transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1"
 >
   <!-- image (optional) -->
   @if(imageSrc){<ng-container>
@@ -16,8 +16,10 @@
     <div class="mb-2">
       @if(property?.title){
       <h3 class="text-lg font-semibold leading-tight">{{ property?.title }}</h3>
-      } @if(subtitle){
-      <p class="text-sm text-muted-foreground">{{ subtitle }}</p>
+      } @if(property?.location){
+      <p class="text-sm text-muted-foreground">{{ property?.location }}</p>
+      } @if(property?.price){
+      <p class="text-blue-500">{{ property?.price }}</p>
       }
     </div>
     }
