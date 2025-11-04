@@ -7,4 +7,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {}
+export class Navbar {
+  user: string = '';
+
+  userInitial: string | undefined = this.user.at(0);
+}
