@@ -1,0 +1,4 @@
+/* in component .scss (with encapsulation) */
+:host ::ng-deep .mat-mdc-paginator {
+  background: rgb(255, 173, 173);
+}

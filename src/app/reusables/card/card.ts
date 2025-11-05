@@ -9,12 +9,7 @@ import { House } from '../../model/house';
   styleUrl: './card.scss',
 })
 export class Card {
-  @Input() title?: string;
   @Input() property?: House;
-  @Input() subtitle?: string;
-  @Input() imageSrc?: string;
-  @Input() imageAlt = '';
-  @Input() footer?: string;
   @Input() variant: 'elevated' | 'outline' = 'elevated';
   @Input() clickable = false; // makes the whole card keyboard-focusable
 
