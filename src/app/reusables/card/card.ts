@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { House } from '../../model/house';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './card.html',
   styleUrl: './card.scss',
 })
