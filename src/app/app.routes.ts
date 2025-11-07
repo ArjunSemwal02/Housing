@@ -23,7 +23,7 @@ export const routes: Routes = [
     component: Login,
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: Details,
   },
 ];
