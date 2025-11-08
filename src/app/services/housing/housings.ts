@@ -82,7 +82,7 @@ export class Housings {
       title: 'Riverfront Villa in Kochi',
       price: '₹2.9 Cr',
       location: 'Marine Drive, Kochi',
-      image: 'public/propertiesImgs/phil-hearing-IYfp2Ixe9nM-unsplash.jpg',
+      image: '/propertiesImgs/phil-hearing-IYfp2Ixe9nM-unsplash.jpg',
     },
     {
       id: 12,

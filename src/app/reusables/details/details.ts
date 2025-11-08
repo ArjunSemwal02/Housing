@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { House } from '../../model/house';
 import { Housings } from '../../services/housing/housings';
+import { RegisteredService } from '../../services/registered/registered';
 
 @Component({
   selector: 'app-details',
@@ -10,7 +11,12 @@ import { Housings } from '../../services/housing/housings';
   styleUrl: './details.scss',
 })
 export class Details implements OnInit {
-  constructor(private route: ActivatedRoute, private houseService: Housings) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private houseService: Housings,
+    private registeredPropsService: RegisteredService
+  ) {}
 
   propertyId!: number;
 
@@ -24,5 +30,15 @@ export class Details implements OnInit {
     this.houseService.housings$.subscribe((value: House[]) => {
       this.property = value.find((data) => data.id === this.propertyId)!;
     });
+  }
+
+  onRegisterProperty() {
+    let registerProp = new House();
+    this.houseService.housings$.subscribe((value: House[]) => {
+      registerProp = value.find((data) => data.id === this.propertyId)!;
+    });
+
+    this.registeredPropsService.updateRegisteredProps(registerProp);
+    this.router.navigate(['/registered']);
   }
 }

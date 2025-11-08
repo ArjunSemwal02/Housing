@@ -1,8 +1,8 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { House } from '../../model/house';
-import { Housings } from '../../services/housing/housings';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Card } from '../../reusables/card/card';
+import { RegisteredService } from '../../services/registered/registered';
 
 @Component({
   selector: 'app-registered',
@@ -11,7 +11,7 @@ import { Card } from '../../reusables/card/card';
   styleUrl: './registered.scss',
 })
 export class Registered {
-  housingService = inject(Housings);
+  registeredpropsService = inject(RegisteredService);
 
   properties: House[] = [];
   pagedProperties: House[] = [];
@@ -22,7 +22,7 @@ export class Registered {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.housingService.housings$.subscribe({
+    this.registeredpropsService.getAllProps().subscribe({
       next: (value) => {
         this.properties = value;
         this.pagedProperties = value;
