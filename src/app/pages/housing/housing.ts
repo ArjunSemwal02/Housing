@@ -25,7 +25,7 @@ export class Housing implements OnInit {
   ngOnInit(): void {
     this.housingService.housings$.subscribe({
       next: (value) => {
-        this.properties = value;
+        // this.properties = value;
         this.pagedProperties = value;
       },
       error: (err) => {},

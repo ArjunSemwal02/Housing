@@ -14,5 +14,5 @@ export class Navbar implements OnInit {
 
   ngOnInit() {}
 
-  userInitial: string | undefined = this.user.at(0)?.toUpperCase();
+  userInitial: string | undefined = this.user[0]?.toUpperCase();
 }
