@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Auth } from '../../auth/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,8 +16,9 @@ export class Signup {
   showPassword = false;
   showConfirmPassword = false;
   passwordStrength = 0; // 0–100 range
+  error!: string;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private auth: Auth, private router: Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group(
@@ -28,7 +31,26 @@ export class Signup {
       },
       { validators: this.passwordMatchValidator }
     );
+
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['dashboard']); // auto redirect if logged in
+    }
   }
+
+  signup() {
+    this.submitted = true;
+    if (this.signupForm.invalid) return;
+
+    if (this.auth.signup(this.email?.value, this.password?.value)) {
+      this.router.navigate(['/login']);
+      console.log('Signup successful!', this.signupForm.value);
+      alert('Signup successful!');
+    } else {
+      this.error = 'User already exists';
+    }
+  }
+
+  onSubmit(): void {}
 
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;
@@ -55,12 +77,12 @@ export class Signup {
     else this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-    if (this.signupForm.invalid) return;
+  get email() {
+    return this.signupForm.get('email');
+  }
 
-    console.log('Signup successful!', this.signupForm.value);
-    alert('Signup successful!');
+  get password() {
+    return this.signupForm.get('password');
   }
 
   get f() {
