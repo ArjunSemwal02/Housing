@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-red-200 p-6 relative">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Registered Properties</h1>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    @for(property of properties; track $index){<app-card [property]="property"></app-card>}
+  </div>
+
+  <!-- Material paginator -->
+  <div class="flex justify-center mt-4 rounded-lg overflow-hidden w-fit mx-auto">
+    <mat-paginator
+      [length]="properties.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[4, 8, 12, 16]"
+      showFirstLastButtons
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
