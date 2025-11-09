@@ -4,10 +4,19 @@ import { House } from '../../model/house';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { Housings } from '../../services/housing/housings';
+import { FormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
+import { SearchFilterPipe } from '../../pipes/search-filter-pipe';
 
 @Component({
   selector: 'app-housing',
-  imports: [Card, CommonModule, MatPaginator],
+  imports: [
+    Card,
+    CommonModule,
+    MatPaginator,
+    ɵInternalFormsSharedModule,
+    FormsModule,
+    SearchFilterPipe,
+  ],
   templateUrl: './housing.html',
   styleUrl: './housing.scss',
 })
@@ -16,6 +25,8 @@ export class Housing implements OnInit {
 
   properties: House[] = [];
   pagedProperties: House[] = [];
+
+  searchProperty: string = '';
 
   pageSize = 8;
   currentPage = 0;

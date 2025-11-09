@@ -16,7 +16,7 @@ export class Registered {
   properties: House[] = [];
   pagedProperties: House[] = [];
 
-  pageSize = 8;
+  pageSize = 4;
   currentPage = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
