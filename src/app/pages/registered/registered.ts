@@ -3,10 +3,11 @@ import { House } from '../../model/house';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Card } from '../../reusables/card/card';
 import { RegisteredService } from '../../services/registered/registered';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registered',
-  imports: [Card, MatPaginator],
+  imports: [Card, MatPaginator, RouterLink],
   templateUrl: './registered.html',
   styleUrl: './registered.scss',
 })

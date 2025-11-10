@@ -1,1 +1,21 @@
-<p>sidebar works!</p>
+<div class="mb-1 p-3 w-full text-lg rounded-full flex justify-end text-red-900 right-0">
+  <i class="fa-solid fa-xmark" (click)="closeSidebar()"></i>
+</div>
+<ul class="text-red-900">
+  @for(item of menuItems; track $index){
+  <li
+    (click)="onClickSidebarOption($event, item)"
+    [ngClass]="{
+      'bg-red-500 text-white': activeItem === item,
+      'hover:bg-red-700': activeItem !== item,
+      hidden:
+        (item === 'Log in' && authService.isLoggedIn() === true) ||
+        (item === 'Sign up' && authService.isLoggedIn() === true) ||
+        (item === 'Logout' && authService.isLoggedIn() === false)
+    }"
+    class="cursor-pointer p-2 transition duration-300 ease-in-out"
+  >
+    {{ item }}
+  </li>
+  }
+</ul>

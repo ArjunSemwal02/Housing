@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Auth } from '../../../auth/auth';
+import { SidebarService } from '../../global/sidebarService/sidebar-service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,21 @@ import { Auth } from '../../../auth/auth';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar implements OnInit {
+export class Navbar {
   authService = inject(Auth);
+  sidebarService = inject(SidebarService);
+
   user: string = this.authService.getCurrentUser() || '';
 
-  ngOnInit() {}
+  @ViewChild('userIcon') userIcon!: ElementRef;
 
   userInitial: string | undefined = this.user[0]?.toUpperCase();
+
+  // ngAfterViewInit() {
+  //   // Access native element here (safe because it's rendered)
+  //   const element = this.userIcon.nativeElement;
+
+  //   // Example: register it to ignore clicks
+  //   this.sidebarService.registerIgnoreElement(element);
+  // }
 }

@@ -1,11 +1,22 @@
 <div class="min-h-screen bg-red-200 p-6 relative">
-  <h1 class="text-2xl font-bold mb-6 text-gray-800">Registered Properties</h1>
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">
+    {{ properties.length > 0 ? 'Registered Properties' : 'Not registered any property yet!' }}
+  </h1>
+
+  @if(properties.length === 0){
+  <Button
+    class="w-[130px] shadow-md hover:shadow-xl md:self-start bg-red-600 text-white font-semibold p-2 rounded-lg transition-all duration-500 ease-in-out hover:scale-105 hover:bg-red-700"
+    routerLink="/housing"
+    >Book now <i class="fa-solid fa-house-chimney"></i
+  ></Button>
+  }
 
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     @for(property of properties; track $index){<app-card [property]="property"></app-card>}
   </div>
 
   <!-- Material paginator -->
+  @if(properties.length > 0){
   <div class="flex justify-center mt-4 rounded-lg overflow-hidden w-fit mx-auto">
     <mat-paginator
       [length]="properties.length"
@@ -16,4 +27,5 @@
     >
     </mat-paginator>
   </div>
+  }
 </div>
