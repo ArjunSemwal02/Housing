@@ -1,27 +1,28 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { Card } from '../../reusables/card/card';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { House } from '../../model/house';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { Housings } from '../../services/housing/housings';
 import { FormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { SearchFilterPipe } from '../../pipes/search-filter-pipe';
+import { Card } from '../../reusables/card/card';
 
 @Component({
   selector: 'app-housing',
   imports: [
-    Card,
     CommonModule,
     MatPaginator,
     ɵInternalFormsSharedModule,
     FormsModule,
     SearchFilterPipe,
+    Card,
   ],
   templateUrl: './housing.html',
   styleUrl: './housing.scss',
 })
 export class Housing implements OnInit {
   housingService = inject(Housings);
+  housingsLoaded = signal<boolean>(false);
 
   properties: House[] = [];
   pagedProperties: House[] = [];
@@ -31,15 +32,19 @@ export class Housing implements OnInit {
   pageSize = 8;
   currentPage = 0;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.housingService.housings$.subscribe({
       next: (value) => {
+        setInterval(() => {
+          this.housingsLoaded.set(true);
+        }, 2000);
+
         // this.properties = value;
         this.pagedProperties = value;
       },
-      error: (err) => {},
+      error: () => {},
     });
 
     this.loadPage();
