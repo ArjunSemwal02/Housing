@@ -18,7 +18,7 @@ export class App implements OnInit {
 
   sidebarService = inject(SidebarService);
 
-  sidebarOpen: boolean = true;
+  sidebarOpen: boolean = false;
 
   @Input() userIcon!: HTMLElement;
 

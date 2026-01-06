@@ -15,8 +15,6 @@ export class Sidebar {
 
   activeItem = 'Home'; // default active
 
-  sidebarOpen = signal<boolean>(false);
-
   sidebarService = inject(SidebarService);
   authService = inject(Auth);
 

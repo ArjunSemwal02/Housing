@@ -17,6 +17,8 @@
 
   <!-- body -->
   <div class="p-4">
+    <button (click)="name = 'aj'; $event.stopPropagation()">click</button>
+
     @if(property?.title){
     <div class="mb-2">
       @if(property?.title){
@@ -28,6 +30,8 @@
       }
     </div>
     }
+
+    <div>{{ name }}</div>
 
     <!-- projected content for flexible inner content -->
     <div class="card-content text-sm">

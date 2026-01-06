@@ -19,11 +19,5 @@ export class Navbar {
 
   userInitial: string | undefined = this.user[0]?.toUpperCase();
 
-  // ngAfterViewInit() {
-  //   // Access native element here (safe because it's rendered)
-  //   const element = this.userIcon.nativeElement;
-
-  //   // Example: register it to ignore clicks
-  //   this.sidebarService.registerIgnoreElement(element);
-  // }
+  openUserDetails() {}
 }

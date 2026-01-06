@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class SidebarService {
-  sidebarSubject = new BehaviorSubject<boolean>(false);
+  sidebarSubject = new BehaviorSubject<boolean>(true);
   sidebarOpen$ = this.sidebarSubject.asObservable();
 
   private ignoreElements: HTMLElement[] = [];

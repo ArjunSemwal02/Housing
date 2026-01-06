@@ -1,4 +1,4 @@
-<div class="flex justify-between items-center">
+<div class="flex justify-between items-center relative">
   <div class="flex items-center justify-center">
     <div
       class="md:hidden h-9 w-9 m-2 p-1 bg-red-100 rounded-full text-center text-red-900 text-xl"
@@ -48,7 +48,7 @@
     <div
       #userIcon
       class="m-4 p-0 cursor-pointer transition-all duration-300 ease-in-out text-red-800 rounded-full bg-red-200 w-8 h-8 hover:bg-red-700 hover:text-white flex items-center justify-center"
-      (click)="sidebarService.updateSidebarState(true); $event.stopPropagation()"
+      (click)="openUserDetails()"
     >
       @if(user.length > 0){<span>
         {{ userInitial }}
@@ -60,4 +60,10 @@
     }
   </div>
   }
+
+  <div
+    class="absolute mr-1 w-[200px] md:w-[200px] h-20 right-0 top-18 bg-red-300 flex items-center justify-center rounded-lg shadow-2xl"
+  >
+    {{ user }}
+  </div>
 </div>

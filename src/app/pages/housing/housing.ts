@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Housings } from '../../services/housing/housings';
 import { FormsModule, ɵInternalFormsSharedModule } from '@angular/forms';
 import { SearchFilterPipe } from '../../pipes/search-filter-pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-housing',
@@ -23,6 +24,8 @@ import { SearchFilterPipe } from '../../pipes/search-filter-pipe';
 export class Housing implements OnInit {
   housingService = inject(Housings);
 
+  housingTemp?: Observable<House[]>;
+
   properties: House[] = [];
   pagedProperties: House[] = [];
 
@@ -34,6 +37,8 @@ export class Housing implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
+    this.housingTemp = this.housingService.housings$;
+
     this.housingService.housings$.subscribe({
       next: (value) => {
         // this.properties = value;
